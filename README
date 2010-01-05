@@ -1,0 +1,10 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2916
+
+Plugin to open and close help without leaving current window
+It is mostly useful when you want a quick reference
+
+Use:
+:Help subject - get help using :help command. It opens help window but cursor stays in the current window
+:Help! subject - help with :help! command
+:Help or :Help! - close help window
+
