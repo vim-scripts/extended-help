@@ -16,13 +16,16 @@ let loaded_extended_help = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-command! -nargs=? -bang Help call s:Help('<bang>', '<args>')
+command! -nargs=? -bang -complete=help Help call s:Help('<bang>', <f-args>)
 
-function! s:Help(bang, arg)
-  if a:arg != ''
-    exec 'help' . a:bang . ' ' . a:arg
-    " return to prev window
-    wincmd p
+function! s:Help(bang, ...)
+  let l:start_bt = &l:buftype
+  if a:0 > 0
+    exec 'help' . a:bang . ' ' . a:1
+    if l:start_bt != 'help'
+      " return to prev window if we were not in help window
+      wincmd p
+    endif
   else
     " open or switch to help window and close it
     help
